@@ -1,16 +1,24 @@
-# Arch ThinkPad x220 Install
+# Arch ThinkPad x220 Install with UEFI
 
-## Introduction
+## 1 Introduction
 
-I created this guide on how to install Arch Linux on a ThinkPad x220 laptop.
+I created this guide on how to install Arch Linux on a ThinkPad x220 laptop with the UEFI interface. The ThinkPad x220 I used for this install was an i5 8GB RAM 250GB SSD. I used a bootable USB drive that contained the Arch Linux 2018.12.01 release which includes Kernel version 4.19.4.
 
-## Prereq
+## 2 Prereq
+
+Before installing, you need to make sure that USB booting is turned on as well as UEFI. You need to go into the BIOS and make sure that UEFI is turned on and that legacy will not start before EUFI.
  
-You need to go into the BIOS and make sure that UEFI is turned on and that legacy will not start before EUFI
+## 3 Create USB with Arch Linux install
+
+Head over to https://www.archlinux.org and download the latest ISO image of Arch Linux.
+
+From Windows:
+
+Download the Rufus utility (https://rufus.ie/en_IE.html) and make the USB drive bootable with the Arch ISO you just downloaded.
  
-## Create USB with Arch Linux install
- 
-## Partition
+## 4 Partition
+
+You will want to parition the HDD / SSD to turn the storage device into multiple volumes. To do this we use the `parted` utility which is a tool to manage disk partitions in linux. Below are the commands that I used:
  
 `parted /dev/sda mklabel gpt`
 
@@ -22,7 +30,7 @@ You need to go into the BIOS and make sure that UEFI is turned on and that legac
 
 `parted /dev/sda mkpart primary ext4 33GiB 1000%`
 
-## Format
+## 5 Format
  
 `mkfs.fat -F32 /dev/sda1`
 
@@ -34,7 +42,7 @@ You need to go into the BIOS and make sure that UEFI is turned on and that legac
 
 `mkfs.ext4 /dev/sda4`
  
-## Mount
+## 6 Mount
  
 `mount /dev/sda3/mnt`
 
@@ -46,21 +54,21 @@ You need to go into the BIOS and make sure that UEFI is turned on and that legac
 
 `mount /dev/sda4 /mnt/home`
 
-6. Pacstrap
+## 7 Pacstrap
   
 `pacstrap -i /mnt base base-devel`
   
-7. Configure fstab
+## 8 Configure fstab
   
 `genfstab -U -p /mnt >> /mnt/etc/fstab`
  
-8. Chroot & Set Root Password
+## 9 Chroot & Set Root Password
  
 `arch-chroot /mnt /bin/bash`
 
 `passwd`
  
-8. Language &  Locale
+## 10 Language &  Locale
  
 `echo en_US.UTF UTF-8 > locale.gen`
 
@@ -68,7 +76,7 @@ You need to go into the BIOS and make sure that UEFI is turned on and that legac
 
 `echo LANG=en_US.UTF-8 > /etc/locale.conf`
  
-10. Time Zone
+## 11 Time Zone
  
 `ln -s /usr/share/zoneinfo/America/Chicago /etc/localtime`
 
@@ -77,7 +85,7 @@ You need to go into the BIOS and make sure that UEFI is turned on and that legac
 `vi /etc/hostname
    <enterhostname>`
  
-11. Bootloader -UEFI
+## 12 Bootloader -UEFI
  
 `pacman -S grub efibootmgr`
  
@@ -89,7 +97,7 @@ You need to go into the BIOS and make sure that UEFI is turned on and that legac
   
 `grub-mkconfig -o /boot/grub/grub.cfg`
  
-12. Few last final things
+## 13 Few last final things
   
 `exit`
 
