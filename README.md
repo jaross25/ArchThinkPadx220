@@ -130,3 +130,7 @@ The bootloader I use is called GRUB and this is used to tell the system to load 
 `reboot`
 
 Make sure to remove the USB drive
+
+Enable DHCP
+
+`systemctl enable dhcpcd`
