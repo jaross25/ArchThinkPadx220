@@ -2,11 +2,13 @@
 
 ## 1 Introduction
 
-I created this guide on how to install [Arch Linux] (https://www.archlinux.org/) on a ThinkPad x220 laptop with the UEFI interface. The ThinkPad x220 I used for this install was an i5 8GB RAM 250GB SSD. I used a bootable USB drive that contained the Arch Linux 2018.12.01 release which includes Kernel version 4.19.4.
+I created this guide on how to install [Arch Linux](https://www.archlinux.org/) on a ThinkPad x220 laptop with the UEFI interface. The ThinkPad x220 I used for this install was an i5 8GB RAM 250GB SSD. I used a bootable USB drive that contained the Arch Linux 2018.12.01 release which includes Kernel version 4.19.4.
 
 ## 2 Prerequisites
 
 Before installing, you need to make sure that USB booting is turned on as well as UEFI. You need to go into the BIOS and make sure that UEFI is turned on and that legacy will not start before EUFI.
+
+To configure settings in the BIOS on a ThinkPad X220 you need to turn on the laptop and press the blue ThinkVantage button multiple times until the BIOS menu loads then press F1 to change BIOS settings. Move over to the **Startup** tab and then set **UEFI/Legacy Boot Priority** to **UEFI First** and save changes.
  
 ## 3 Create USB with Arch Linux install
 
@@ -31,6 +33,8 @@ You will want to parition the HDD / SSD to turn the storage device into multiple
 `parted /dev/sda mkpart primary ext4 33GiB 1000%`
 
 ## 5 Format
+
+Next we will want to format the partitions we created on the HDD / SSD and to do this we will use the `mkfs` package to build our Linux file system.
  
 `mkfs.fat -F32 /dev/sda1`
 
