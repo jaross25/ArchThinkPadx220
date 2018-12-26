@@ -48,7 +48,7 @@ Next we will want to format the partitions we created on the HDD / SSD and to do
  
 ## 6 Mount
  
-`mount /dev/sda3/mnt`
+`mount /dev/sda2 /mnt`
 
 `mkdir -p /mnt/boot/efi`
 
