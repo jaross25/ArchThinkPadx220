@@ -118,8 +118,12 @@ The bootloader I use is called GRUB and this is used to tell the system to load 
 `mkdir -p /boot/efi/EFI/boot cp /boot/efi/EFI/arch_grub/grubx64.efi /boot/efi/EFI/boot/bootx64.efi`
   
 `grub-mkconfig -o /boot/grub/grub.cfg`
+
+## 13 Enable DHPC
+
+`systemctl enable dhcpcd`
  
-## 13 Few last final things
+## 14 Few last final things
   
 `exit`
 
@@ -130,7 +134,3 @@ The bootloader I use is called GRUB and this is used to tell the system to load 
 `reboot`
 
 Make sure to remove the USB drive
-
-Enable DHCP
-
-`systemctl enable dhcpcd`
