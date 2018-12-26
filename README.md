@@ -21,6 +21,10 @@ Download the Rufus utility (https://rufus.ie/en_IE.html) and make the USB drive 
 ## 4 Partition
 
 You will want to parition the HDD / SSD to turn the storage device into multiple volumes. To do this we use the `parted` utility which is a tool to manage disk partitions in linux. Below are the commands that I used:
+
+Use `lsblk` or `fdisk -l` to view your disks on the system. In the below example I am going to use `lsblk`:
+
+`lsblk`
  
 `parted /dev/sda mklabel gpt`
 
@@ -31,6 +35,10 @@ You will want to parition the HDD / SSD to turn the storage device into multiple
 `parted /dev/sda mkpart primary linux-swap 25GiB 33GiB`
 
 `parted /dev/sda mkpart primary ext4 33GiB 100%`
+
+Use `lsblk` or `fdisk -l` to view the partitions you just created. In the below example I am g oing to use `lsblk`:
+
+`lsblk`
 
 ## 5 Format
 
@@ -59,7 +67,9 @@ Next we will want to format the partitions we created on the HDD / SSD and to do
 `mount /dev/sda4 /mnt/home`
 
 ## 7 Pacstrap
-  
+
+Next we are going to install Arch Linux using `pacstrap` which is the package manager in Arch:
+
 `pacstrap -i /mnt base base-devel`
   
 ## 8 Configure fstab
@@ -72,7 +82,11 @@ Next we need to configure the fstab file which contains the data to automate the
  
 `arch-chroot /mnt /bin/bash`
 
+Set password for the root account:
+
 `passwd`
+
+(You will not be able to see the password characters)
  
 ## 10 Language &  Locale
 
@@ -99,11 +113,9 @@ The bootloader I use is called GRUB and this is used to tell the system to load 
  
 `pacman -S grub efibootmgr`
  
-`grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=
-  arch_grub --recheck`
+`grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=arch_grub --recheck`
  
-`mkdir -p /boot/efi/EFI/boot cp /boot/efi/EFI/arch_grub/grubx64.efi /boot/ef
-  i/EFI/boot/bootx64.efi`
+`mkdir -p /boot/efi/EFI/boot cp /boot/efi/EFI/arch_grub/grubx64.efi /boot/efi/EFI/boot/bootx64.efi`
   
 `grub-mkconfig -o /boot/grub/grub.cfg`
  
