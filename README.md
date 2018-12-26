@@ -14,9 +14,23 @@ To configure settings in the BIOS on a ThinkPad X220 you need to turn on the lap
 
 Head over to https://www.archlinux.org and download the latest ISO image of Arch Linux.
 
-From Windows:
+**From Windows:**
 
 Download the Rufus utility (https://rufus.ie/en_IE.html) and make the USB drive bootable with the Arch ISO you just downloaded.
+
+**From Linux:**
+
+Find USB drive:
+
+`fdisk -l`
+
+Make sure the USB drive is unmounted
+
+`umount /dev/sdb1`
+
+Create USB from ISO image:
+
+`dd bs=4M if=archlinux-2018.12.01-x86_64.iso of=/dev/sdb`
  
 ## 4 Partition
 
