@@ -63,6 +63,8 @@ Next we will want to format the partitions we created on the HDD / SSD and to do
 `pacstrap -i /mnt base base-devel`
   
 ## 8 Configure fstab
+
+Next we need to configure the fstab file which contains the data to automate the mounting of partitions.
   
 `genfstab -U -p /mnt >> /mnt/etc/fstab`
  
@@ -73,6 +75,8 @@ Next we will want to format the partitions we created on the HDD / SSD and to do
 `passwd`
  
 ## 10 Language &  Locale
+
+Next we need to generate locales on the system and we do this by using `locale-gen`
  
 `echo en_US.UTF UTF-8 > locale.gen`
 
@@ -90,6 +94,8 @@ Next we will want to format the partitions we created on the HDD / SSD and to do
    <enterhostname>`
  
 ## 12 Bootloader -UEFI
+
+The bootloader I use is called GRUB and this is used to tell the system to load the Linux Kernel when the system turns on. We will use `packman` which is Arch's package manager to download grub and efibootmgr. We will then install grub using `grub-install`.
  
 `pacman -S grub efibootmgr`
  
@@ -110,3 +116,5 @@ Next we will want to format the partitions we created on the HDD / SSD and to do
 `umount /mnt`
 
 `reboot`
+
+Make sure to remove the USB drive
