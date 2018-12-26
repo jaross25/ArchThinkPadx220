@@ -2,7 +2,7 @@
 
 ## 1 Introduction
 
-I created this guide on how to install [Arch Linux](https://www.archlinux.org/) on a ThinkPad x220 laptop with the UEFI interface. The ThinkPad x220 I used for this install was an i5 8GB RAM 250GB SSD. I used a bootable USB drive that contained the Arch Linux 2018.12.01 release which includes Kernel version 4.19.4.
+I created this guide on how to install [Arch Linux](https://www.archlinux.org/) on a Lenovo ThinkPad x220 laptop with the UEFI interface. The ThinkPad x220 I used for this install was an i5 8GB RAM 250GB SSD. I used a bootable USB drive that contained the Arch Linux 2018.12.01 release which includes Kernel version 4.19.4.
 
 ## 2 Prerequisites
 
@@ -30,7 +30,7 @@ You will want to parition the HDD / SSD to turn the storage device into multiple
 
 `parted /dev/sda mkpart primary linux-swap 25GiB 33GiB`
 
-`parted /dev/sda mkpart primary ext4 33GiB 1000%`
+`parted /dev/sda mkpart primary ext4 33GiB 100%`
 
 ## 5 Format
 
